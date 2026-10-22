@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · Cine Retrofuturo · Produção Textual 9º</title>
+<style>
+  :root{--fundo:#0e0c10;--fundo2:#18141c;--borda:#2c2533;--borda2:#463b52;--ambar:#ffb547;--ciano:#4fe0e6;--verm:#ff5a4e;--lilas:#b79cff;--verde:#3ddc84;--vermelho:#ff5a4e;--texto:#f3ead8;--cinza:#a89fae}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:17px;background:radial-gradient(900px 420px at 50% -8%,rgba(255,181,71,.16),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 2px,transparent 2px 4px),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  .filme{height:14px;background:repeating-linear-gradient(90deg,#0e0c10 0 9px,#f3ead8 9px 17px,#0e0c10 17px 26px);opacity:.55}
+  header{background:linear-gradient(120deg,#4a2c05,#2a1a08 55%,#1b1420);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ambar)}
+  header .selo{font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif;font-size:.78rem;letter-spacing:4px;color:#ffe2b0;text-transform:uppercase}
+  header h1{font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif;font-size:1.55rem;margin:6px 0 2px}
+  header p{color:#f0e2cc;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--borda)}
+  .barra-nav a.on{background:var(--ambar);color:#2b1d00;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--borda);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ambar);font-size:1.1rem;margin-bottom:8px;font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--fundo2);border:1px solid var(--borda);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--borda2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#0f2a1c,#1b4d33);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none;position:sticky;top:0;z-index:5}
+  .codigo.show{display:block}
+  .codigo .cod{font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif;font-size:1.8rem;font-weight:bold;letter-spacing:4px;color:#9be8bd;margin:6px 0}
+  .progresso{height:10px;background:var(--borda);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--ambar),var(--verm),var(--ciano),var(--lilas));width:0;transition:width .3s}
+  .q{background:var(--fundo2);border:1px solid var(--borda);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif;color:var(--ambar);font-weight:bold;font-size:.8rem;letter-spacing:2px;text-transform:uppercase}
+  .q .tema{float:right;font-size:.7rem;color:var(--cinza);background:var(--fundo);border:1px solid var(--borda2);border-radius:10px;padding:2px 8px}
+  .q h3{font-size:1.02rem;margin:6px 0 10px;font-weight:600}
+  .q .trecho{background:#120f15;border-left:3px solid var(--ciano);padding:8px 12px;margin:6px 0 10px;border-radius:0 8px 8px 0;font-style:italic;font-size:.95rem}
+  .alt{display:block;background:#120f15;border:1px solid var(--borda2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--ambar)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--ambar);background:#2e2310}
+  .alt.certa{border-color:var(--verde);background:#0e2b1e}
+  .alt.errada{border-color:#5a5a5a;background:#1c191e;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#120f15;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--ambar);color:#2b1d00;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#231d29;color:#7d7385;cursor:not-allowed}
+  .gab{background:var(--fundo2);border:1px dashed var(--ambar);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--borda2);background:#0b090d;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ambar);color:#2b1d00;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .trilha-fim{background:linear-gradient(120deg,#0f2a1c,#13392a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#9be8bd;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04210f;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#231d29;color:#7d7385;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(10,8,12,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--ambar);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ambar);color:#2b1d00;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="filme"></div>
+<header>
+  <div class="selo">Cine Retrofuturo · Produção Textual 9º ano · CCF</div>
+  <h1>🎯 Quiz — O Trailer</h1>
+  <p>12 questões · Relato pessoal, manifesto e ficção científica · Código MED para os pais</p>
+</header>
+<div class="filme"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a class="on" href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>🍿 Antes do filme, o trailer!</h2>
+    <p>O trailer mostra, em poucos minutos, o melhor do filme. Aqui é igual: <b>12 questões rápidas</b> (todas obrigatórias) para ver se você entendeu os rolos. Depois de <b>Enviar</b>, as respostas travam, sai o seu <b>código MED</b> e o gabarito comentado abre com o código. Ao enviar, o <b>🗺️ Resumo destrava</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar respostas (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código MED que apareceu no topo.<br>
+    <input id="gab-in" placeholder="MED-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Resumo</h3>
+    <p id="trilha-fim-txt">O Resumo destrava quando você enviar o Quiz.</p>
+    <a class="btn off" id="btn-prox" href="resumo.html">🗺️ Ir para o Resumo</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎞️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Quiz, conclua a Leitura Guiada.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='cine_retrofuturo_pt9';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); links[i].removeAttribute('title'); } }
+}
+
+function checarTrava(){
+  if(podeAbrir('quiz')) return true;
+  var L=lerJSON(KIT+'_leitura_v1'); var p=(L&&L.progresso)||{conferidos:0,total:8,chkPendentes:0};
+  var faltam=p.total-p.conferidos;
+  var txt= faltam>0 ? 'Para abrir o Quiz, conclua a Leitura Guiada: faltam '+faltam+' de '+p.total+' rolos.' : 'Para abrir o Quiz, responda a autoavaliação Sim/Não da Leitura Guiada ('+p.chkPendentes+' ponto(s) pendente(s)).';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== QUESTÕES (conteúdo das páginas do livro L. Portuguesa 9º enviadas pela Ana) — a correta é guardada pelo id ====== */
+var Q=[
+ {tema:"Relato pessoal",p:"Segundo o livro, o relato pessoal é:",alts:[
+  {id:"a",t:"um texto que expõe o pensamento de um grupo sobre um assunto de interesse geral, para persuadir o leitor.",e:"Essa é a definição de manifesto, que é do gênero argumentativo."},
+  {id:"b",t:"uma narração sobre um fato marcante da vida de uma pessoa, em que é possível perceber as emoções e os sentimentos de quem escreve.",ok:true,e:"É exatamente a definição do livro."},
+  {id:"c",t:"uma narrativa com personagens e enredos imaginários ligados a possíveis descobertas científicas.",e:"Isso descreve a ficção científica."},
+  {id:"d",t:"um texto neutro, que informa os fatos sem nenhuma emoção de quem escreve.",e:"O relato é subjetivo: os fatos passam pelo olhar do narrador e as emoções aparecem."}]},
+ {tema:"Relato pessoal",p:"Nos relatos pessoais, os verbos normalmente estão no ______ e o texto é narrado em ______.",alts:[
+  {id:"a",t:"presente do indicativo; 3ª pessoa.",e:"O presente do indicativo é marca do manifesto, e o relato não é em 3ª pessoa."},
+  {id:"b",t:"futuro; 1ª pessoa.",e:"O relato conta algo que já aconteceu, por isso o tempo é o passado."},
+  {id:"c",t:"passado; 1ª pessoa.",ok:true,e:"O livro diz: verbos normalmente no passado e textos relatados em 1ª pessoa."},
+  {id:"d",t:"presente; 2ª pessoa.",e:"Nem presente nem 2ª pessoa: quem relata fala de si (eu), no passado."}]},
+ {tema:"Relato pessoal",p:"Leia o trecho de um relato e responda: \"Eu nunca vou esquecer o dia em que minha avó me ensinou a pescar no rio Azul, num domingo de julho.\" A expressão \"num domingo de julho\" responde a qual das seis perguntas básicas do relato?",alts:[
+  {id:"a",t:"Onde?",e:"\"Onde?\" é o local: no trecho, o rio Azul."},
+  {id:"b",t:"Por quê?",e:"\"Por quê?\" indica o causador do fato, que o trecho não traz."},
+  {id:"c",t:"Quem?",e:"\"Quem?\" é o autor do relato (o \"eu\")."},
+  {id:"d",t:"Quando?",ok:true,e:"\"Quando?\" indica o tempo: num domingo de julho."}]},
+ {tema:"Manifesto",p:"Por que se diz que o manifesto pertence ao gênero argumentativo?",alts:[
+  {id:"a",t:"Porque narra um fato marcante da vida de quem escreve.",e:"Isso é o relato pessoal."},
+  {id:"b",t:"Porque cria um universo novo misturando real e imaginário.",e:"Isso é a ficção científica."},
+  {id:"c",t:"Porque tem uma estrutura fixa que precisa ser seguida.",e:"O livro diz o contrário: não há estrutura fixa para o manifesto."},
+  {id:"d",t:"Porque a sua finalidade, seja denunciando, seja conscientizando, é persuadir o leitor.",ok:true,e:"É o que o livro afirma: a finalidade é persuadir, por isso ele é argumentativo."}]},
+ {tema:"Manifesto",p:"Sobre a estrutura do manifesto, é correto afirmar que:",alts:[
+  {id:"a",t:"não há uma estrutura fixa, mas geralmente há título, uma breve introdução com o problema ou a reivindicação e um desenvolvimento com argumentos.",ok:true,e:"São as características básicas apresentadas pelo livro."},
+  {id:"b",t:"ele precisa obrigatoriamente terminar com a assinatura de um órgão do governo.",e:"O livro diz que PODE haver data, local, nome e assinatura do grupo ou órgão responsável — não é obrigatório nem precisa ser do governo."},
+  {id:"c",t:"ele não deve ter título, para não revelar o assunto antes da hora.",e:"O livro diz que há, geralmente, um título."},
+  {id:"d",t:"o desenvolvimento conta a história de vida do autor em ordem cronológica.",e:"No desenvolvimento aparecem argumentos que sustentam o ponto de vista."}]},
+ {tema:"Manifesto",p:"Quanto à linguagem do manifesto, o livro afirma que:",alts:[
+  {id:"a",t:"devem ser usados termos complexos e técnicos, para dar mais autoridade ao texto.",e:"O livro diz que NÃO devem ser usados termos muito complexos, para que a maior parte da população entenda."},
+  {id:"b",t:"predominam os verbos no passado e a 1ª pessoa do singular.",e:"Essas são marcas do relato pessoal."},
+  {id:"c",t:"predomina a norma-padrão, sem termos muito complexos, com predomínio de verbos no presente do indicativo.",ok:true,e:"É a descrição da linguagem do manifesto no livro."},
+  {id:"d",t:"é comum criar palavras novas e até línguas novas.",e:"Isso é um recurso da ficção científica, para aumentar a sensação de realidade."}]},
+ {tema:"História da ficção científica",p:"Quem foi a autora do primeiro romance científico?",alts:[
+  {id:"a",t:"Júlio Verne, com Viagem ao centro da Terra.",e:"Verne é considerado um dos grandes precursores do gênero, mas o primeiro romance científico não é dele."},
+  {id:"b",t:"Mary Shelley, com Frankenstein, publicado em 1818.",ok:true,e:"O livro afirma que Mary Shelley foi a autora do primeiro romance científico."},
+  {id:"c",t:"H.G. Wells, com Os primeiros homens na Lua.",e:"A obra de Wells serviu de base para o filme Viagem à Lua, mas não é o primeiro romance científico."},
+  {id:"d",t:"Georges Méliès, com Viagem à Lua.",e:"Viagem à Lua é um filme (1902), não um romance, e Méliès é o diretor."}]},
+ {tema:"História da ficção científica",p:"O filme Viagem à Lua, de Georges Méliès (1902), é importante na história do gênero porque:",alts:[
+  {id:"a",t:"foi dirigido por Stanley Kubrick e virou um clássico de Hollywood.",e:"Kubrick dirigiu 2001: Uma odisseia no espaço (1968) e Laranja mecânica (1971)."},
+  {id:"b",t:"foi o primeiro romance científico publicado.",e:"O primeiro romance científico é Frankenstein (1818)."},
+  {id:"c",t:"mostrou as imagens reais da chegada da NASA à Lua.",e:"A NASA chegou à Lua em 1969, muito depois do filme."},
+  {id:"d",t:"é a primeira produção de ficção científica do cinema de que se tem notícia, baseada em obras de Júlio Verne e de H.G. Wells.",ok:true,e:"O enredo se baseou em Da Terra à Lua (Verne) e Os primeiros homens na Lua (Wells)."}]},
+ {tema:"História da ficção científica",p:"Segundo o livro, o segredo do sucesso da ficção científica está em:",alts:[
+  {id:"a",t:"descrever viagens no tempo e no espaço, robôs, invenções e vida extraterrestre em histórias fantásticas, mas possíveis.",ok:true,e:"É o que atrai grandes plateias e cria leitores ávidos, segundo o livro."},
+  {id:"b",t:"contar apenas fatos que já aconteceram de verdade.",e:"A ficção científica apresenta enredos imaginários."},
+  {id:"c",t:"ser um gênero que serve apenas para divertir, sem relação com a ciência.",e:"O livro diz que ela não serve apenas para divertir: também estimula a imaginação, e tem base em descobertas científicas."},
+  {id:"d",t:"evitar qualquer previsão sobre o futuro.",e:"As obras de ficção científica muitas vezes fazem previsões que podem acontecer no futuro."}]},
+ {tema:"Verossimilhança",p:"A palavra verossimilhança é formada por:",alts:[
+  {id:"a",t:"vero = visto + símil = imaginado.",e:"Vero significa verdadeiro, e símil, semelhante."},
+  {id:"b",t:"vero = verdadeiro + símil = diferente.",e:"Símil significa semelhante, não diferente."},
+  {id:"c",t:"vero = verdadeiro + símil = semelhante.",ok:true,e:"Verossímil é o que é semelhante ao verdadeiro."},
+  {id:"d",t:"verbo = palavra + similar = igual.",e:"A palavra vem de vero (verdadeiro) + símil (semelhante)."}]},
+ {tema:"Verossimilhança",p:"Para que um conto de ficção científica tenha verossimilhança, é necessário que:",alts:[
+  {id:"a",t:"os fatos narrados tenham acontecido de verdade.",e:"O livro diz que não há necessidade de os fatos terem acontecido ou acontecerem de verdade."},
+  {id:"b",t:"os fatos aconteçam por acaso, para surpreender o leitor.",e:"Nada deve acontecer por acaso: cada ação corresponde a uma reação."},
+  {id:"c",t:"a história não tenha nenhuma base científica.",e:"A ficção científica se baseia em hipóteses científicas, sem perder o contato com a realidade."},
+  {id:"d",t:"haja uma lógica interna, com relação de causa e consequência entre os fatos, que dê credibilidade à narrativa.",ok:true,e:"É a coerência interna que faz a história parecer real."}]},
+ {tema:"Estrutura da ficção científica",p:"No enredo de um texto de ficção científica, o clímax é:",alts:[
+  {id:"a",t:"a apresentação inicial dos personagens e do lugar.",e:"Essa é a introdução."},
+  {id:"b",t:"o momento em que o conflito se mostra em seu ponto de mais alta tensão.",ok:true,e:"É a definição do livro para clímax."},
+  {id:"c",t:"o final, que costuma surpreender o leitor e instigá-lo à reflexão.",e:"Esse é o desfecho."},
+  {id:"d",t:"a criação de palavras e línguas novas.",e:"Isso é um recurso de linguagem, não uma parte do enredo."}]}
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(20261037);
+Q.forEach(function(q){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; });
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_quiz_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'MED-'+xx+'-'+yy; }
+
+function render(){
+  var c=document.getElementById('questoes'); var h='';
+  Q.forEach(function(q,i){
+    h+='<div class="q" id="q'+i+'"><span class="tema">'+q.tema+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    q.ordem.forEach(function(a,k){
+      var letra='abcd'[k]; var sel=estado.resp[i]===a.id;
+      var cls='alt'+(sel?' sel':'');
+      if(estado.gabarito){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+      h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t;
+      if(estado.gabarito){ h+='<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>'; }
+      h+='</label>';
+    });
+    h+='</div>';
+  });
+  c.innerHTML=h;
+  atualizarBarra();
+  if(estado.enviado){ mostrarEnviado(); }
+  atualizarTrilhaFim();
+}
+function marcar(i,id){ if(estado.enviado) return; estado.resp[i]=id; salvar(); var q=document.getElementById('q'+i); var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===id); } atualizarBarra(); }
+function atualizarBarra(){ var n=Object.keys(estado.resp).length; document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar respostas ('+n+' de '+Q.length+' respondidas)':'📨 Enviar respostas'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ var a=q.alts.filter(function(x){return x.id===estado.resp[i];})[0]; if(a&&a.ok) ac++; });
+  estado.acertos=ac; estado.total=Q.length; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Quiz enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado e o relatório no Início.';
+  document.getElementById('gab').classList.add('show');
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe8c0">Gabarito liberado: '+estado.acertos+' acertos de '+Q.length+'.</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function atualizarTrilhaFim(){
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox'); var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Quiz enviado — Resumo destravado!'; txt.textContent=estado.concluido?'Agora use o Resumo para fechar as dúvidas que o Quiz mostrou.':'Trilha liberada pelos pais.'; btn.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Resumo'; txt.textContent='Destrava quando você enviar o Quiz.'; btn.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='quiz_cine-retrofuturo.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Quiz? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Quiz já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); } else { marcarNav(); }
+</script>
+</body>
+</html>

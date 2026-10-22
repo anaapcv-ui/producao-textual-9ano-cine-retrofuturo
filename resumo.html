@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Cine Retrofuturo · Produção Textual 9º</title>
+<style>
+  :root{--fundo:#0e0c10;--fundo2:#18141c;--borda:#2c2533;--borda2:#463b52;--ambar:#ffb547;--verm:#ff5a4e;--ciano:#4fe0e6;--lilas:#b79cff;--verde:#3ddc84;--texto:#f3ead8;--cinza:#a89fae}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:18px;background:radial-gradient(900px 420px at 50% -8%,rgba(183,156,255,.14),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 2px,transparent 2px 4px),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  .geo,h1,h2,h3{font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif}
+  .filme{height:14px;background:repeating-linear-gradient(90deg,#0e0c10 0 9px,#f3ead8 9px 17px,#0e0c10 17px 26px);opacity:.55}
+  header{background:linear-gradient(120deg,#2a1d4a,#1b1430 55%,#0d3336);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--lilas)}
+  header .selo{font-size:.78rem;letter-spacing:4px;color:#e2d8ff;text-transform:uppercase;font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif}
+  header h1{font-size:1.6rem;margin:6px 0 2px}
+  header p{color:#e6def7;font-size:.92rem}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--borda)}
+  .barra-nav a.on{background:var(--lilas);color:#1b1030;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--fundo2);border:1px solid var(--borda);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--borda2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .sec{background:var(--fundo2);border:1px solid var(--borda);border-radius:16px;padding:18px;margin:18px 0}
+  .sec h2{font-size:1.2rem;margin-bottom:10px}
+  .sec p{margin-bottom:8px}
+  .fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .ficha{background:#120f15;border:1px solid var(--borda2);border-top:6px solid var(--ambar);border-radius:12px;padding:14px;font-size:.95rem}
+  .ficha h3{font-size:1.08rem;margin-bottom:8px}
+  .ficha.rel{border-top-color:var(--ambar)} .ficha.rel h3{color:var(--ambar)}
+  .ficha.man{border-top-color:var(--verm)} .ficha.man h3{color:#ff8f86}
+  .ficha.fc{border-top-color:var(--ciano)} .ficha.fc h3{color:var(--ciano)}
+  .ficha dt{font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--cinza);margin-top:8px}
+  .ficha dd{margin-left:0}
+  .tabela{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--borda);padding:8px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#231c2a}
+  .tabela th.rel{color:var(--ambar)} .tabela th.man{color:#ff8f86} .tabela th.fc{color:var(--ciano)}
+  .scroll{overflow-x:auto}
+  .anat{background:#f3ead8;color:#1b1520;border-radius:10px;padding:14px 16px;font-size:.98rem;line-height:1.8;margin:8px 0}
+  .anat span{padding:1px 4px;border-radius:4px}
+  .p-tit{background:#ffd08a} .p-int{background:#ffb1aa} .p-arg{background:#a8f0f2} .p-ass{background:#d9ccff}
+  .p-quem{background:#ffd08a} .p-quando{background:#a8f0f2} .p-onde{background:#c6f5d6} .p-oque{background:#ffb1aa} .p-como{background:#d9ccff} .p-pq{background:#ffe88a}
+  .leg{display:flex;flex-wrap:wrap;gap:6px;font-size:.8rem;margin-top:6px}
+  .leg span{padding:2px 8px;border-radius:10px;color:#1b1520;font-weight:bold}
+  .tl{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+  .tl-it{flex:1;min-width:130px;background:#120f15;border:1px solid var(--borda2);border-top:4px solid var(--ciano);border-radius:10px;padding:9px 10px;font-size:.88rem}
+  .tl-it b{display:block;font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif;font-size:1rem;margin-bottom:2px;color:var(--ciano)}
+  .tl-it.cine{border-top-color:var(--ambar)} .tl-it.cine b{color:var(--ambar)}
+  .tl-it.real{border-top-color:var(--verde)} .tl-it.real b{color:var(--verde)}
+  .enredo{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:8px 0}
+  .enredo div{flex:1;min-width:140px;background:#120f15;border:1px solid var(--borda2);border-radius:10px;padding:10px;font-size:.88rem;text-align:center}
+  .enredo div b{display:block;color:var(--lilas);font-size:1rem}
+  .enredo div.clim{border-color:var(--verm);box-shadow:0 0 12px rgba(255,90,78,.35)} .enredo div.clim b{color:var(--verm)}
+  .cadeia{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0;font-size:.9rem}
+  .cadeia .el{background:#231c2a;border:1px solid var(--lilas);border-radius:10px;padding:8px 10px}
+  .cadeia .seta{color:var(--lilas);font-weight:bold}
+  .formula{text-align:center;font-size:1.3rem;margin:10px 0;font-family:'Century Gothic','Futura','Avenir Next','Trebuchet MS',sans-serif}
+  .formula b{color:var(--lilas)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.95rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:14px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1419;border-left:5px solid var(--verm);border-radius:0 12px 12px 0;padding:12px 14px;margin:12px 0;font-size:.95rem}
+  .peg b{color:#ffb3bb}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:10px 0}
+  .flip{perspective:900px;height:180px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.92rem}
+  .flip .front{background:linear-gradient(135deg,#2a1d4a,#1b1430);border:1px solid var(--lilas);font-weight:bold;font-size:1.02rem}
+  .flip .front small{display:block;font-weight:normal;color:var(--cinza);font-size:.78rem;margin-top:6px}
+  .flip .back{background:#120f15;border:1px solid var(--ciano);transform:rotateY(180deg)}
+  .glos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;font-size:.92rem}
+  .glos div{background:#120f15;border:1px solid var(--borda);border-radius:8px;padding:8px 10px}
+  .glos b{color:var(--ambar)}
+  .fim{background:linear-gradient(120deg,#0f2a1c,#13392a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#9be8bd;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04210f;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#231d29;color:#7d7385;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:#5aa9ff;color:#04162e;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#231d29;color:#7d7385;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(10,8,12,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--lilas);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--lilas);color:#1b1030;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="filme"></div>
+<header>
+  <div class="selo">Cine Retrofuturo · Produção Textual 9º ano · CCF</div>
+  <h1>🗺️ Resumo — O Programa da Sessão</h1>
+  <p>Tudo o que entra na prova, numa página só: fichas, comparação, anatomia dos textos e pegadinhas</p>
+</header>
+<div class="filme"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="painel">
+    <span id="salvo">📏 Rolagem máxima: 0%</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <!-- FICHAS -->
+  <div class="sec">
+    <h2>🎟️ As fichas dos gêneros (compare olhando!)</h2>
+    <div class="fichas">
+      <div class="ficha rel">
+        <h3>📼 Relato pessoal</h3>
+        <dl>
+          <dt>O que é</dt><dd>Narração sobre um <b>fato marcante da vida</b> de uma pessoa, em que se percebem as <b>emoções e os sentimentos</b> de quem escreve.</dd>
+          <dt>Estrutura</dt><dd>Responde às <b>6 perguntas</b>: Quem? O quê? Quando? Onde? Como? Por quê? · <b>tempo e espaço bem-definidos</b> · pode ter <b>trechos descritivos</b> (ambientação).</dd>
+          <dt>Linguagem</dt><dd>Caráter <b>subjetivo</b> · <b>1ª pessoa</b> · verbos normalmente no <b>passado</b> · a linguagem depende da <b>situação comunicativa</b> (contexto, assunto, público-alvo e finalidade).</dd>
+          <dt>Como circula</dt><dd>Pode ser <b>oral</b> ou <b>escrito</b>. Exemplo do livro: um <b>diário de guerra</b>.</dd>
+        </dl>
+      </div>
+      <div class="ficha man">
+        <h3>📢 Manifesto</h3>
+        <dl>
+          <dt>O que é</dt><dd><b>Exteriorização do pensamento</b> de uma pessoa ou grupo sobre um <b>assunto de interesse geral</b> (áreas social, política, cultural, religiosa, ideológica…).</dd>
+          <dt>Finalidade</dt><dd><b>Persuadir</b> o leitor → gênero <b>argumentativo</b>. Instrumento de <b>denúncia</b> ou de <b>conscientização</b>; pode fazer uma <b>reivindicação a um órgão competente</b>.</dd>
+          <dt>Estrutura</dt><dd><b>Sem estrutura fixa</b>, mas geralmente: <b>título</b> · <b>introdução</b> com o problema/reivindicação · <b>desenvolvimento</b> com argumentos · pode ter <b>data, local, nome e assinatura</b>.</dd>
+          <dt>Linguagem</dt><dd><b>Norma-padrão</b>, <b>sem termos muito complexos</b> · predomínio do <b>presente do indicativo</b>.</dd>
+        </dl>
+      </div>
+      <div class="ficha fc">
+        <h3>🚀 Ficção científica</h3>
+        <dl>
+          <dt>O que é</dt><dd>Personagens e enredos <b>imaginários</b> ligados a <b>possíveis descobertas científicas</b> → tem <b>base na realidade</b>; muitas vezes faz <b>previsões</b> sobre o futuro.</dd>
+          <dt>Finalidade</dt><dd><b>Não serve apenas para divertir</b>: também é <b>estímulo à imaginação</b> humana.</dd>
+          <dt>Estrutura</dt><dd>Gênero <b>narrativo</b>: personagens (humanos ou não), tempo (do passado ao futuro distante), espaço (até outras galáxias), foco narrativo · enredo: introdução → complicação → <b>clímax</b> → desfecho.</dd>
+          <dt>Linguagem e recursos</dt><dd>Criação de <b>novas palavras</b> e até <b>novas línguas</b> (sensação de realidade) · <b>verossimilhança</b>.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUADRO COMPARATIVO -->
+  <div class="sec">
+    <h2>⚖️ Quadro comparativo: não confunda!</h2>
+    <div class="scroll">
+    <table class="tabela">
+      <thead><tr><th></th><th class="rel">📼 Relato pessoal</th><th class="man">📢 Manifesto</th><th class="fc">🚀 Ficção científica</th></tr></thead>
+      <tbody>
+        <tr><th>Tipo de texto</th><td>narração (de um fato vivido)</td><td><b>argumentativo</b></td><td><b>narrativo</b> (imaginário)</td></tr>
+        <tr><th>Para quê?</th><td>contar um fato marcante e mostrar emoções</td><td><b>persuadir</b>: denunciar, conscientizar, reivindicar</td><td>divertir e <b>estimular a imaginação</b></td></tr>
+        <tr><th>Relação com a realidade</th><td>fato da <b>vida de quem conta</b>, filtrado pelo olhar dele (subjetivo)</td><td><b>problema</b> de interesse geral</td><td>imaginário, mas com <b>base científica</b> (verossímil)</td></tr>
+        <tr><th>Pessoa e tempo verbal</th><td><b>1ª pessoa</b> · verbos no <b>passado</b></td><td>verbos no <b>presente do indicativo</b></td><td>— (o livro não especifica)</td></tr>
+        <tr><th>Marca de linguagem</th><td>linguagem conforme a <b>situação comunicativa</b>; trechos descritivos</td><td><b>norma-padrão</b> sem termos muito complexos</td><td><b>palavras e línguas novas</b></td></tr>
+        <tr><th>Organização</th><td>6 perguntas · tempo e espaço definidos</td><td><b>sem estrutura fixa</b>: título, introdução, argumentos, assinatura</td><td>introdução, complicação, clímax, desfecho</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="peg">⚠️ <b>Pegadinha:</b> o manifesto pode usar "nós" (1ª pessoa do plural) e mesmo assim <b>não é relato</b>. O que decide é a finalidade: relato <b>conta</b> um fato marcante; manifesto <b>quer convencer</b>.</div>
+  </div>
+
+  <!-- ANATOMIA RELATO -->
+  <div class="sec">
+    <h2>🔬 Anatomia de um relato pessoal (as 6 perguntas)</h2>
+    <p style="font-size:.9rem;color:var(--cinza)">Exemplo inventado para treinar — cada cor responde a uma pergunta.</p>
+    <div class="anat"><span class="p-quando">No último dia de aula do 8º ano</span>, <span class="p-onde">na quadra da escola</span>, <span class="p-quem">eu</span> <span class="p-oque">apresentei sozinho a música que tinha composto</span>. <span class="p-como">Subi ao palco com o violão emprestado, as mãos suando, e toquei de olhos fechados</span>, <span class="p-pq">porque meu primo tinha me desafiado a mostrar o meu trabalho</span>. Quando abri os olhos, todo mundo aplaudia — e eu chorei de alegria.</div>
+    <div class="leg"><span class="p-quem">Quem?</span><span class="p-oque">O quê?</span><span class="p-quando">Quando?</span><span class="p-onde">Onde?</span><span class="p-como">Como?</span><span class="p-pq">Por quê?</span></div>
+    <div class="postit">📌 <b>Dica de prova:</b> no relato, "Quem?" é o <b>autor do relato</b> e "Por quê?" é <b>o causador do fato</b>. Repare também: <b>1ª pessoa</b> (eu) e verbos no <b>passado</b> (apresentei, subi, toquei).</div>
+  </div>
+
+  <!-- ANATOMIA MANIFESTO -->
+  <div class="sec">
+    <h2>🔬 Anatomia de um manifesto</h2>
+    <p style="font-size:.9rem;color:var(--cinza)">Exemplo inventado para treinar — cada cor é uma característica básica.</p>
+    <div class="anat"><span class="p-tit"><b>PELA BIBLIOTECA ABERTA NO RECREIO</b></span><br><span class="p-int">Nós, estudantes do 9º ano, pedimos à direção da escola que a biblioteca fique aberta durante o recreio.</span> <span class="p-arg">Hoje, quem quer ler ou fazer pesquisa não tem onde ir nesse horário. Além disso, a biblioteca aberta incentiva a leitura e ocupa o tempo livre com algo útil.</span><br><span class="p-ass">Grêmio Estudantil · 15 de setembro</span></div>
+    <div class="leg"><span class="p-tit">Título</span><span class="p-int">Introdução (problema/reivindicação)</span><span class="p-arg">Desenvolvimento (argumentos)</span><span class="p-ass">Assinatura e data</span></div>
+    <div class="postit">📌 <b>Dica de prova:</b> verbos no <b>presente do indicativo</b> (pedimos, incentiva), <b>norma-padrão</b> e palavras simples. Esse manifesto faz uma <b>reivindicação</b> a um órgão competente (a direção).</div>
+  </div>
+
+  <!-- LINHA DO TEMPO FC -->
+  <div class="sec">
+    <h2>🎞️ Linha do tempo da ficção científica</h2>
+    <div class="tl">
+      <div class="tl-it"><b>Início do séc. XIX</b>alguns autores já trabalham o gênero, sem alcançar o grande público</div>
+      <div class="tl-it"><b>1818</b><i>Frankenstein</i>, de <b>Mary Shelley</b>: o <b>primeiro romance científico</b></div>
+      <div class="tl-it"><b>1864</b><i>Viagem ao centro da Terra</i> (Júlio Verne)</div>
+      <div class="tl-it"><b>1865</b><i>Da Terra à Lua</i> (Verne leva o homem à Lua no livro)</div>
+      <div class="tl-it"><b>1869</b><i>Vinte mil léguas submarinas</i> (Verne descreve um submarino)</div>
+      <div class="tl-it cine"><b>1902</b><i>Viagem à Lua</i>, de <b>Georges Méliès</b>: 1º filme de FC (base: Verne + H.G. Wells)</div>
+      <div class="tl-it real"><b>Início do séc. XX</b>começa o teste de um protótipo do submarino imaginado por Verne</div>
+      <div class="tl-it cine"><b>1968</b><i>2001: Uma odisseia no espaço</i> (Stanley Kubrick)</div>
+      <div class="tl-it real"><b>1969</b>a <b>NASA</b> leva o homem à Lua de verdade</div>
+      <div class="tl-it cine"><b>1971</b><i>Laranja mecânica</i> (Stanley Kubrick)</div>
+    </div>
+    <div class="leg"><span style="background:var(--ciano)">livros</span><span style="background:var(--ambar)">cinema</span><span style="background:var(--verde)">a realidade alcança a ficção</span></div>
+    <div class="peg">⚠️ <b>Pegadinha:</b> <b>Júlio Verne</b> é <b>precursor</b> (abriu caminho e popularizou o gênero), mas o <b>primeiro romance científico</b> é de <b>Mary Shelley</b>. E <i>Viagem à Lua</i> é de <b>Méliès</b>, não de Kubrick.</div>
+    <div class="postit">📌 <b>O segredo do sucesso:</b> histórias <b>fantásticas, mas possíveis</b> — viagens no tempo e no espaço, robôs que falam e pensam, invenções, vida extraterrestre. Computadores, inteligência artificial e viagens espaciais <b>surgiram primeiro nos livros</b>.</div>
+  </div>
+
+  <!-- ESTRUTURA + VEROSSIMILHANÇA -->
+  <div class="sec">
+    <h2>🪐 O enredo de ficção científica</h2>
+    <div class="enredo">
+      <div><b>Introdução</b>apresenta personagens, tempo e espaço</div>
+      <div><b>Complicação</b>surge o conflito</div>
+      <div class="clim"><b>Clímax</b>o conflito no ponto de <b>mais alta tensão</b></div>
+      <div><b>Desfecho</b>costuma <b>surpreender</b> e levar à <b>reflexão</b></div>
+    </div>
+    <p>Personagens: <b>humanos ou não</b> · Tempo: do <b>passado ao futuro distante</b> · Espaço: lugares <b>longínquos</b>, até <b>outras galáxias</b> · Linguagem: <b>palavras e línguas novas</b> aumentam a sensação de realidade.</p>
+  </div>
+
+  <div class="sec">
+    <h2>🧩 Verossimilhança</h2>
+    <div class="formula"><b>vero</b> = verdadeiro &nbsp;+&nbsp; <b>símil</b> = semelhante</div>
+    <p>É a <b>coerência interna</b> que organiza os fatos de forma lógica e faz o enredo parecer <b>real e factível</b>. O texto mistura o <b>real</b> e o <b>imaginário</b>, mas tudo se baseia em <b>hipóteses científicas</b> e no progresso da ciência e da tecnologia.</p>
+    <p><b>Causa e consequência</b> — nada acontece por acaso; cada ação corresponde a uma reação; um fato desencadeia outros:</p>
+    <div class="cadeia"><span class="el">tempestade solar</span><span class="seta">→</span><span class="el">escudo da colônia danificado</span><span class="seta">→</span><span class="el">sensores falham</span><span class="seta">→</span><span class="el">estufa congela</span><span class="seta">→</span><span class="el">comida racionada</span></div>
+    <div class="peg">⚠️ <b>Pegadinha:</b> verossímil <b>não é</b> verdadeiro! Os fatos <b>não precisam ter acontecido</b> nem acontecer de verdade — precisam de uma <b>lógica dentro do texto</b> que dê credibilidade.</div>
+    <div class="postit">📌 <b>Tabela de planejamento do livro (para o conto):</b> Quem são os personagens? · Onde se passa a ação? · Quando ela ocorre? · O que acontece? · Por que acontece? · Que avanços científicos estão presentes?</div>
+  </div>
+
+  <!-- FLIPS -->
+  <div class="sec">
+    <h2>🃏 Cartas para virar (toque para ver o verso)</h2>
+    <div class="flips">
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Subjetivo<small>por que o relato é assim?</small></div><div class="face back">Porque os fatos relatados passam, necessariamente, pelo filtro do olhar do narrador.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Situação comunicativa<small>o que inclui?</small></div><div class="face back">Contexto, assunto, público-alvo e finalidade — é dela que depende a linguagem do relato.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Gênero argumentativo<small>quem é? por quê?</small></div><div class="face back">O manifesto, porque a sua finalidade é persuadir o leitor.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Denúncia × reivindicação<small>qual a diferença?</small></div><div class="face back">Denúncia: informa a população sobre o fato. Reivindicação: pede algo a um órgão competente.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Precursor<small>quem é, na ficção científica?</small></div><div class="face back">Júlio Verne: um dos grandes precursores do gênero; popularizou as histórias no fim do século XIX.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Clímax<small>o que é?</small></div><div class="face back">O momento em que o conflito se mostra em seu ponto de mais alta tensão.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Desfecho<small>como costuma ser na FC?</small></div><div class="face back">Costuma surpreender o leitor e instigá-lo à reflexão.</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Verossimilhança<small>de onde vem a palavra?</small></div><div class="face back">vero = verdadeiro + símil = semelhante: a lógica interna que faz a história parecer real.</div></div></div>
+    </div>
+  </div>
+
+  <!-- GLOSSÁRIO -->
+  <div class="sec">
+    <h2>📚 Glossário do capítulo</h2>
+    <div class="glos">
+      <div><b>Relato pessoal</b> — narração de um fato marcante da vida de uma pessoa.</div>
+      <div><b>Trecho descritivo</b> — parte que ajuda na ambientação do que é contado.</div>
+      <div><b>Subjetivo</b> — que passa pelo olhar de quem narra.</div>
+      <div><b>1ª pessoa</b> — o texto é contado por "eu" (ou "nós").</div>
+      <div><b>Manifesto</b> — exteriorização do pensamento de pessoa ou grupo sobre assunto de interesse geral.</div>
+      <div><b>Exteriorização</b> — ato de pôr para fora, tornar público o que se pensa.</div>
+      <div><b>Persuadir</b> — convencer o leitor.</div>
+      <div><b>Reivindicação</b> — pedido feito a um órgão competente.</div>
+      <div><b>Norma-padrão</b> — predomina no manifesto, mas sem termos muito complexos.</div>
+      <div><b>Presente do indicativo</b> — tempo verbal que predomina no manifesto (pedimos, exigimos).</div>
+      <div><b>Ficção científica</b> — narrativa imaginária ligada a possíveis descobertas científicas.</div>
+      <div><b>Romance científico</b> — o 1º foi <i>Frankenstein</i> (Mary Shelley, 1818).</div>
+      <div><b>Precursor</b> — quem veio antes e abriu caminho (Júlio Verne).</div>
+      <div><b>Protótipo</b> — primeiro modelo de um invento, feito para testar.</div>
+      <div><b>Clímax</b> — ponto de mais alta tensão do conflito.</div>
+      <div><b>Verossimilhança</b> — coerência interna que faz o enredo parecer real.</div>
+      <div><b>Factível</b> — possível de acontecer.</div>
+      <div><b>Causa e consequência</b> — um fato provoca outro; nada acontece por acaso.</div>
+    </div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎞️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='cine_retrofuturo_pt9';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); links[i].removeAttribute('title'); } }
+}
+
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'% · 💾 salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; if((estado.rolagemMax||0)<90) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare o Simulado valendo, como se fosse a prova.':'Trilha liberada pelos pais.'; b.disabled=!!estado.concluido||(estado.rolagemMax||0)<90; b.textContent=estado.concluido?'✅ Resumo concluído':'✅ Li o resumo até o fim'; a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_cine-retrofuturo.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); atualizarFim(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Zerar a rolagem deste Resumo? (Se ele já foi concluído, a conclusão é mantida e o Simulado continua aberto.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, zerar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={rolagemMax:0}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); atualizarFim(); } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>
